@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MEDIA CENTER</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #102542, #245b83);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    color: #222;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px #0005;
+}
+
+h1 {
+    color: #163b61;
+}
+
+p {
+    color: #666;
+}
+
+.menu {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 12px;
+    background: #1769aa;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.menu:hover {
+    background: #0c477b;
+}
+
+.video-area {
+    display: none;
+    margin-top: 20px;
+}
+
+video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎬 MEDIA CENTER</h1>
+
+    <p>Silakan pilih menu yang tersedia</p>
+
+    <!-- MENU 1 -->
+    <button class="menu" onclick="bukaVideo()">
+        ▶ 1. BUKA VIDEO
+    </button>
+
+    <!-- MENU 2 -->
+    <button class="menu" onclick="bukaDrive()">
+        📁 2. BUKA FILE GOOGLE DRIVE
+    </button>
+
+    <!-- AREA VIDEO -->
+    <div id="videoArea" class="video-area">
+
+        <h3>PUTAR VIDEO</h3>
+
+        <input
+            type="file"
+            id="videoFile"
+            accept="video/*"
+        >
+
+        <video id="player" controls></video>
+
+    </div>
+
+</div>
+
+<script>
+
+// MENU BUKA VIDEO
+function bukaVideo() {
+
+    document.getElementById("videoArea")
+    .style.display = "block";
+
+    document.getElementById("videoFile").click();
+
+}
+
+// PILIH DAN PUTAR VIDEO
+document.getElementById("videoFile")
+.addEventListener("change", function() {
+
+    const file = this.files[0];
+
+    if (file) {
+
+        const video = document.getElementById("player");
+
+        video.src = URL.createObjectURL(file);
+
+        video.play();
+
+    }
+
+});
+
+// MENU GOOGLE DRIVE
+function bukaDrive() {
+
+    window.open(
+        "https://drive.google.com/drive/folders/1H_m0q8sP-qIm3DFkQSHBpS8QbaMbhvVA?usp=drive_link",
+        "_blank"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
